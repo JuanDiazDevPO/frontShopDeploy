@@ -1,10 +1,8 @@
-export interface Product {
-    id?: number;
-    name: string;
-    description: string;
-    price: number;
-    stock: number;
-    image: string;
-    category: string;
-  }
-  
+export interface ProductoModel {
+  categoria: string; // Cambiado de id_categoria a categoria
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  stock: number;
+  imagen_url: string; // Cambiado de image a imagen_url
+}

@@ -1,49 +1,88 @@
-  import { Component, OnInit, ViewChild } from '@angular/core';
-  import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-  import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-  import { ProductService } from '../product.service';
-  import { Product } from '../Product';
-  import { BrowserModule } from '@angular/platform-browser';
-  import { MatButtonModule } from '@angular/material/button';
-  import { HttpClient, HttpClientModule } from '@angular/common/http';
-  import {MatTabsModule} from '@angular/material/tabs';
-import { MatCard, MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ProductoModel } from '../Product'; // Asegúrate de que la ruta sea correcta
+import { ProductService } from '../product.service'; // Asegúrate de que la ruta sea correcta
 
+@Component({
+  selector: 'app-productos',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+  ]
+})
+export class ProductosComponent implements OnInit, AfterViewInit {
 
-  @Component({
-    selector: 'app-product-list',
-    standalone: true,
-    templateUrl: './product-list.component.html',
-    imports: [MatCardModule, MatTableModule, MatPaginatorModule,  MatButtonModule, MatTabsModule],
-    styleUrls: ['./product-list.component.css']
-  })
-  export class ProductListComponent implements OnInit {
-    displayedColumns: string[] = ['name', 'description', 'price', 'stock', 'category', 'image', 'addToCart'];
-    dataSource = new MatTableDataSource<Product>();
-    
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['nombre', 'precio', 'descripcion', 'imagen', 'action'];
+  dataSource = new MatTableDataSource<ProductoModel>();
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-    constructor(private productService: ProductService, private httpClient: HttpClient) {}
+  categorias: string[] = [];
+  productosMap = new Map<string, ProductoModel[]>(); // Map para productos agrupados por categoría
+  selectedCategory: string = '';
 
-    finalizarCompra(): void {}
+  constructor(private productService: ProductService, private route: Router) {}
 
+  ngOnInit() {
+    this.productService.getProducts().subscribe(data => {
+      // Guardar los productos agrupados por categoría en el Map
+      this.productosMap = data;
 
-    ngOnInit(): void {
-      this.getProducts();
-    }
+      // Obtener las categorías únicas del Map
+      this.categorias = Array.from(this.productosMap.keys());
 
-    getProducts(): void {
-      this.productService.getProducts().subscribe(
-        (response) => {
-          this.dataSource.data = response;
-          this.dataSource.paginator = this.paginator;
-        },
-        (error) => console.error(error)
-      );
-    }
+      // Convertir el Map en un array plano de productos para inicializar el dataSource
+      this.dataSource.data = Array.from(this.productosMap.values()).flat();
+    }, error => {
+      console.error('Error al obtener productos:', error);
+    });
+  }
 
-    addToCart(product: Product): void {
-      // Aquí puedes manejar la lógica para agregar al carrito, como invocar un servicio o guardar en el estado.
-      console.log('Producto agregado al carrito:', product);
+  ngAfterViewInit() {
+    // Asegúrate de que el paginador se establezca después de que la vista se haya inicializado
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
     }
   }
+
+  onCategoryChange(event: MatSelectChange): void {
+    const category = event.value;
+    if (category) {
+      // Filtrar productos de la categoría seleccionada
+      this.dataSource.data = this.productosMap.get(category) || [];
+    } else {
+      // Mostrar todos los productos si no se selecciona ninguna categoría
+      this.dataSource.data = Array.from(this.productosMap.values()).flat();
+    }
+    
+    if (this.paginator) {
+      this.paginator.firstPage(); // Regresar a la primera página al filtrar
+    }
+  }
+
+  addToCart(product: ProductoModel): void {
+    console.log(`${product.nombre} añadido al carrito`);
+    this.productService.saveCart(product);
+  }
+
+  finalizarCompra(): void {
+    console.log('Compra finalizada');
+    this.route.navigate(['payment']);
+  }
+}
+
+
