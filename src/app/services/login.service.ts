@@ -20,3 +20,7 @@ export class LoginService {
     return this.http.post<string>(this.loginUrl, usuario, { responseType: 'text' as 'json' });
   }
 }
+
+
+
+

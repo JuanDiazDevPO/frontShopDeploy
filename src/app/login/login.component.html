@@ -38,6 +38,10 @@
           </mat-form-field>
   
           <button mat-flat-button color="primary" (click)="onLogin()" class="form-cred">Iniciar Sesión</button>
+          <p style="text-align: center; margin-bottom: 10px;">
+            ¿Olvidaste la contraseña?
+            <a [routerLink]="['/password-reset']" style="font-weight: 500;">Cambiar contraseña</a>
+        </p>
           <p>¿No tienes una cuenta? 
             <button mat-flat-button color="primary" (click)="navReg()" style="font-weight: 500;">Crear una cuenta</button>
           </p>
