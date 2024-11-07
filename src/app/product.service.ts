@@ -7,17 +7,18 @@ import { ProductoModel } from './Product'; // Asegúrate de que la ruta sea corr
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:8090/productos-ordenados-por-categoria';
+  private baseUrl = 'http://localhost:8090/producto/productos-ordenados-por-categoria';
 
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<Map<string, ProductoModel[]>> {
-    // Aquí llamamos al backend para obtener los datos directamente
-    return this.http.get<Map<string, ProductoModel[]>>(this.baseUrl);
+  // Cambiar el tipo para que reciba un objeto simple
+  getProducts(): Observable<Record<string, ProductoModel[]>> {
+    // Aquí llamamos al backend 
+    return this.http.get<Record<string, ProductoModel[]>>(this.baseUrl);
   }
 
   private productos: ProductoModel[] = [];
-
+//guardar en el carrito 
   public saveCart(producto: ProductoModel) {
     this.productos.push(producto);
   }

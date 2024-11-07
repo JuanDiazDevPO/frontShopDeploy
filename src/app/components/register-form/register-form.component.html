@@ -1,9 +1,7 @@
 <div class="example-card">
-   
-
     <div class="form-container">
-        <form class="example-form">
-
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="example-form">
+            <!-- Card Header with Title -->
             <mat-card-header>
                 <div mat-card-avatar class="img"></div>
                 <mat-card-title style="font-weight: 600; font-size: xx-large;">
@@ -13,18 +11,19 @@
                 <p>Por favor llena los siguientes datos</p>
             </mat-card-header>
 
+            <!-- Personal Information Fields -->
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <mat-label>Nombres</mat-label>
-                            <input matInput placeholder="Ingresa tus nombres">
+                            <mat-label>Identificacion</mat-label>
+                            <input matInput formControlName="id_usuario" placeholder="Ingresa tu cédula" required />
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <mat-label>Apellidos</mat-label>
-                            <input matInput placeholder="Ingresa tus apellidos">
+                            <mat-label>Nombre y apellidos</mat-label>
+                            <input matInput formControlName="nombre" placeholder="Ingresa tu nombre" required />
                         </mat-form-field>
                     </td>
                 </tr>
@@ -34,45 +33,59 @@
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <mat-label>Número de identificación</mat-label>
-                            <input matInput placeholder="Ingresa tu número de identificación">
+                            <mat-label>Email</mat-label>
+                            <input matInput formControlName="email" type="email" placeholder="Ingresa tu correo" required />
+                            <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Correo electrónico inválido</mat-error>
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
-                            <mat-label>Número de contacto</mat-label>
-                            <input matInput placeholder="Ingresa tu número de contacto">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput formControlName="telefono" placeholder="Ingresa tu teléfono" required />
                         </mat-form-field>
                     </td>
                 </tr>
             </table>
 
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Dirección</mat-label>
+                            <input matInput formControlName="direccion" placeholder="Ingresa tu dirección" required />
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Account Information Fields -->
             <div class="form">
                 <mat-form-field class="form-cred">
-                    <mat-label>Correo electrónico</mat-label>
-                    <input class="input-form" matInput type="email" placeholder="Ingresa tu correo">
-                </mat-form-field>
-
-                <mat-form-field class="form-cred">
                     <mat-label>Contraseña</mat-label>
-                    <input class="input-form" matInput type="password" placeholder="Ingresa tu contraseña">
+                    <input matInput formControlName="contraseña" type="password" placeholder="Ingresa tu contraseña" required />
+                    <mat-error *ngIf="registerForm.get('contraseña')?.hasError('required')">La contraseña es obligatoria</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="form-cred">
                     <mat-label>Confirmar contraseña</mat-label>
-                    <input class="input-form" matInput type="password" placeholder="Confirma tu contraseña">
+                    <input matInput formControlName="confirmarContraseña" type="password" placeholder="Confirma tu contraseña" required />
+                    <mat-error *ngIf="registerForm.hasError('mismatch', ['contraseña', 'confirmarContraseña'])">
+                        Las contraseñas no coinciden
+                    </mat-error>
                 </mat-form-field>
 
-                <button mat-flat-button color="primary" class="form-cred" >Crear Cuenta</button>
-                <p>¿Ya tienes una cuenta?      <a href="/login"  style="font-weight: 500;">Inciar Sesión</a></p>
-         
+                <button mat-flat-button color="primary" class="form-cred" [disabled]="registerForm.invalid">Crear Cuenta</button>
+                <p>¿Ya tienes una cuenta? <a href="/login" style="font-weight: 500;">Iniciar Sesión</a></p>
             </div>
         </form>
 
+        <!-- Right Image -->
         <div class="right-img">
             <img src="assets/img.png" style="border-radius: 30px;" title="musulman's.kbom">
         </div>
-        
     </div>
-    
 </div>
+
+
+
+

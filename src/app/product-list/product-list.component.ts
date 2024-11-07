@@ -32,21 +32,21 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   categorias: string[] = [];
-  productosMap = new Map<string, ProductoModel[]>(); // Map para productos agrupados por categoría
+  productosMap: Record<string, ProductoModel[]> = {}; // Usamos Record para representar el objeto de productos por categoría
   selectedCategory: string = '';
 
   constructor(private productService: ProductService, private route: Router) {}
 
   ngOnInit() {
     this.productService.getProducts().subscribe(data => {
-      // Guardar los productos agrupados por categoría en el Map
+      // Guardar los productos agrupados por categoría en un objeto
       this.productosMap = data;
 
-      // Obtener las categorías únicas del Map
-      this.categorias = Array.from(this.productosMap.keys());
+      // Obtener las categorías únicas del objeto
+      this.categorias = Object.keys(this.productosMap);
 
-      // Convertir el Map en un array plano de productos para inicializar el dataSource
-      this.dataSource.data = Array.from(this.productosMap.values()).flat();
+      // Convertir el objeto en un array plano de productos para inicializar el dataSource
+      this.dataSource.data = Object.values(this.productosMap).flat();
     }, error => {
       console.error('Error al obtener productos:', error);
     });
@@ -63,10 +63,10 @@ export class ProductosComponent implements OnInit, AfterViewInit {
     const category = event.value;
     if (category) {
       // Filtrar productos de la categoría seleccionada
-      this.dataSource.data = this.productosMap.get(category) || [];
+      this.dataSource.data = this.productosMap[category] || [];
     } else {
       // Mostrar todos los productos si no se selecciona ninguna categoría
-      this.dataSource.data = Array.from(this.productosMap.values()).flat();
+      this.dataSource.data = Object.values(this.productosMap).flat();
     }
     
     if (this.paginator) {

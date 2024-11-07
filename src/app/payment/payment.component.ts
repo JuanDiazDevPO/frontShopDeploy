@@ -22,40 +22,39 @@ import { ProductService } from '../product.service';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  productos: ProductoModel[] = [];
-  precioFinal = 0;
-  paymentForm: FormGroup;
+  productos: ProductoModel[] = []; // Productos del carrito
+  precioFinal = 0; // Precio total de la compra
+  paymentForm: FormGroup; // Formulario de pago
 
-  constructor(private productService: ProductService, private fb: FormBuilder, private dialog: MatDialog) {
+  constructor(
+    private productService: ProductService, // Servicio para obtener el carrito
+    private fb: FormBuilder, // FormBuilder para crear el formulario reactivo
+    private dialog: MatDialog // Diálogo para confirmar el pago
+  ) {
     this.paymentForm = this.fb.group({
-      paymentType: [''],
-      paymentNumber: [''],
-      isGift: ['no'],
-      priorityShipping: [false],
+      paymentType: [''], // Tipo de pago (tarjeta, transferencia, etc.)
+      paymentNumber: [''], // Número de pago (tarjeta, etc.)
+      isGift: ['no'], // Si es un regalo o no
+      priorityShipping: [false], // Si requiere envío prioritario
     });
   }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
-      data => {
-        this.productos = data;
-        this.calcularTotal();
-      },
-      error => {
-        console.error('Error al obtener productos:', error);
-      }
-    );
+    // Obtener productos del carrito almacenados en el servicio
+    this.productos = this.productService.getCart();
+    this.calcularTotal(); // Calcular el total de la compra
   }
 
   calcularTotal(): void {
+    // Sumar los precios de los productos para calcular el total
     this.precioFinal = this.productos.reduce((sum, producto) => sum + producto.precio, 0);
   }
 
-  submitPayment() {
+  submitPayment(): void {
     if (this.paymentForm.valid) {
       console.log("Datos de pago:", this.paymentForm.value);
 
-      // Abre el diálogo de confirmación
+      // Abre el diálogo de confirmación del pago
       this.dialog.open(PaymentConfirmationDialogComponent, {
         data: { message: 'Pago realizado con éxito' },
         width: '300px',
