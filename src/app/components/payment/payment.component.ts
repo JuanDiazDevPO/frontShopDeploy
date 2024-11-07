@@ -8,8 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { PaymentConfirmationDialogComponent } from '../payment-confirmation-dialog/payment-confirmation-dialog.component';
-import { ProductoModel } from '../Product';
-import { ProductService } from '../product.service';
+import { ProductoModel } from '../models/Product';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-payment',

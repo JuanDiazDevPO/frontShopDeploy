@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ResetPasswordService } from '../services/resetpassword.service';
+import { ResetPasswordService } from '../../services/resetpassword.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';

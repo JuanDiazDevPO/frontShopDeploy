@@ -7,8 +7,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { ProductoModel } from '../Product'; // Asegúrate de que la ruta sea correcta
-import { ProductService } from '../product.service'; // Asegúrate de que la ruta sea correcta
+import { ProductoModel } from '../models/Product'; // Asegúrate de que la ruta sea correcta
+import { ProductService } from '../../services/product.service'; // Asegúrate de que la ruta sea correcta
 
 @Component({
   selector: 'app-productos',

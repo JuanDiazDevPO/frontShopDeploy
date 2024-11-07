@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
