@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';  // Importa ReactiveFormsModule
 import { CommonModule } from '@angular/common';  // Importa CommonModule
 
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';  // Importa CommonModule
     ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']

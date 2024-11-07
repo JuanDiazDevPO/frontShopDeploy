@@ -63,4 +63,14 @@ export class PaymentComponent implements OnInit {
       console.log("Por favor complete todos los campos requeridos.");
     }
   }
+  eliminarProducto(producto: ProductoModel): void {
+   
+    const index = this.productos.findIndex(p => p.nombre === producto.nombre);
+    
+
+    if (index > -1) {
+      this.productos.splice(index, 1); 
+      this.calcularTotal(); 
+    }
+  }
 }
