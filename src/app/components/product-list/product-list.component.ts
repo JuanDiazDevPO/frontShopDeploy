@@ -83,6 +83,10 @@ export class ProductosComponent implements OnInit, AfterViewInit {
     console.log('Compra finalizada');
     this.route.navigate(['payment']);
   }
+  logout(): void {
+    // Navega al menú principal (ajusta la ruta según la navegación de tu aplicación)
+    this.route.navigate(['login']);
+  }
 }
 
 

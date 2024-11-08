@@ -7,14 +7,19 @@ import { ProductoModel } from '../components/models/Product'; // Asegúrate de q
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:8090/producto/productos-ordenados-por-categoria';
-
+  private baseUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/producto/productos-ordenados-por-categoria';
+  private compraUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/compras/enviar-confirmacion';
   constructor(private http: HttpClient) {}
 
   // Cambiar el tipo para que reciba un objeto simple
   getProducts(): Observable<Record<string, ProductoModel[]>> {
     // Aquí llamamos al backend 
     return this.http.get<Record<string, ProductoModel[]>>(this.baseUrl);
+  }
+
+
+  sendShop(compra: any): Observable<any> {
+    return this.http.post<any>(this.compraUrl, compra);
   }
 
   private productos: ProductoModel[] = [];

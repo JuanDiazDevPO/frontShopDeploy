@@ -6,6 +6,12 @@
     background-color: rgb(255, 255, 255);
     min-height: 100vh;
 }
+.header-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón hacia la derecha */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    padding-right: 20px; /* Ajusta el padding para dejar un espacio entre el borde y el botón */
+}
 
 .header {
     background-color: rgb(206, 206, 211);
@@ -140,3 +146,4 @@ h1 {
         margin: 5px 0; /* Espaciado entre líneas de texto */
     }
 }
+

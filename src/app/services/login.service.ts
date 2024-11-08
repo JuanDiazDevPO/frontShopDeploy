@@ -11,16 +11,22 @@ interface UsuarioLoginRequest {
   providedIn: 'root',
 })
 export class LoginService {
-  private loginUrl = 'http://localhost:8090/usuario/iniciarSesion';
+  private loginUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/usuario/iniciarSesion';
 
   constructor(private http: HttpClient) {}
 
+  private user : UsuarioLoginRequest | undefined; 
+  
   login(usuario: UsuarioLoginRequest): Observable<string> {
-    // Usamos responseType: 'text' para recibir la respuesta como texto plano
+     this.user=usuario;  // Usamos responseType: 'text' para recibir la respuesta como texto plano
     return this.http.post<string>(this.loginUrl, usuario, { responseType: 'text' as 'json' });
   }
+
+
+
+public  getUserEmail(){
+  return this.user?.email;
 }
 
-
-
+}
 
