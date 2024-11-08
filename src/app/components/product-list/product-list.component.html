@@ -45,8 +45,11 @@
             </ng-container>
             <ng-container matColumnDef="imagen">
               <mat-header-cell *matHeaderCellDef> Imagen </mat-header-cell>
-              <mat-cell *matCellDef="let producto"> {{ producto.imagen_url }} </mat-cell>
+              <mat-cell *matCellDef="let producto">
+                <img [src]="producto.imagen_url" alt="{{ producto.nombre }}" style="width: 100px; height: auto;">
+              </mat-cell>
             </ng-container>
+          
       
             <ng-container matColumnDef="action">
               <mat-header-cell *matHeaderCellDef> Acción </mat-header-cell>
