@@ -11,7 +11,7 @@ interface UsuarioLoginRequest {
   providedIn: 'root',
 })
 export class LoginService {
-  private loginUrl = 'http://localhost:8090/usuario/iniciarSesion';
+  private loginUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/usuario/iniciarSesion';
 
   constructor(private http: HttpClient) {}
 

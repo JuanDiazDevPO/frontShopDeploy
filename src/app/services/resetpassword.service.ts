@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ResetPasswordService {
-  private resetPasswordUrl = 'http://localhost:8090/usuario/solicitar-codigo'; // Actualiza con tu URL
+  private resetPasswordUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/usuario/solicitar-codigo'; // Actualiza con tu URL
 
   constructor(private http: HttpClient) {}
 

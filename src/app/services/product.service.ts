@@ -7,8 +7,8 @@ import { ProductoModel } from '../components/models/Product'; // Asegúrate de q
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:8090/producto/productos-ordenados-por-categoria';
-  private compraUrl = 'http://localhost:8090/compras/enviar-confirmacion';
+  private baseUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/producto/productos-ordenados-por-categoria';
+  private compraUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/compras/enviar-confirmacion';
   constructor(private http: HttpClient) {}
 
   // Cambiar el tipo para que reciba un objeto simple

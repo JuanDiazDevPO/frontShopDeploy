@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CambiarPassword {
-  private apiUrl = 'http://localhost:8090/usuario/cambiar-contrasena-por-email';
+  private apiUrl = 'https://pivotal-base-441001-e5.ue.r.appspot.com/usuario/cambiar-contrasena-por-email';
 
   constructor(private http: HttpClient) {}
 
