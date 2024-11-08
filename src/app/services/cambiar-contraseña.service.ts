@@ -10,8 +10,8 @@ export class CambiarPassword {
 
   constructor(private http: HttpClient) {}
 
-  cambiarContrasenaPorEmail(email: string, nuevaContrasena: string): Observable<any> {
-    const body = { contraseña: nuevaContrasena, email: email };
+  cambiarContrasenaPorEmail(email: string, contraseña: string): Observable<any> {
+    const body = { contraseña: contraseña, email: email }; // Cambié "nuevaContrasena" a "contraseña" para que coincida con el backend
     return this.http.post(this.apiUrl, body, { responseType: 'text' });
   }
 }

@@ -44,9 +44,7 @@ export class ValidarCodigoComponent {
       (response: string) => {
         // Aquí se maneja la respuesta exitosa (200 OK)
         alert(response);  // Muestra el mensaje que devuelve el backend
-        
-        // Luego redirige a la página de cambio de contraseña
-        this.router.navigate(['/cambio-contrasena']);  // Ajusta la ruta según tu configuración
+        this.router.navigate(['/cambiar-password']);  // Ajusta la ruta según tu configuración
       },
       (error) => {
         // Si el backend responde con 401, muestra un mensaje de error
@@ -56,7 +54,7 @@ export class ValidarCodigoComponent {
           // Si el error no es 401, muestra el mensaje de éxito y redirige
           this.mensaje = 'Código válido. Puedes proceder a cambiar tu contraseña.';
           alert('Código válido. Puedes proceder a cambiar tu contraseña.');  // Opcional: puedes mostrar un mensaje también
-          this.router.navigate(['/cambio-contrasena']);  // Redirige a la página de cambio de contraseña
+          this.router.navigate(['/cambiar-password']);  // Redirige a la página de cambio de contraseña
         }
       }
     );
