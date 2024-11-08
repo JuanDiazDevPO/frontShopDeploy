@@ -1,0 +1,59 @@
+<div class="example-card">
+    <div class="form-container">
+      <form [formGroup]="codigoForm" (ngSubmit)="onSubmit()" class="example-form">
+        <mat-card-header>
+          <div mat-card-avatar class="img"></div>
+          <mat-card-title style="font-weight: 600; font-size: xx-large;">
+            Validar Código
+            <img src="assets/form.png" alt="form image">
+          </mat-card-title>
+          <p>Por favor ingresa el código que se envió a tu correo para proceder a cambiar tu contraseña</p>
+        </mat-card-header>
+  
+        <div class="form">
+          <mat-form-field class="form-cred example-full-width">
+            <mat-label>Identificación</mat-label>
+            <input
+              class="input-form"
+              matInput
+              type="number"
+              placeholder="Ingresa tu ID de usuario"
+              formControlName="idUsuario"
+              required
+            />
+            <mat-error *ngIf="codigoForm.get('idUsuario')?.invalid && codigoForm.get('idUsuario')?.touched">
+              Por favor, ingresa un ID de usuario válido.
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="form-cred example-full-width">
+            <mat-label>Código de validación</mat-label>
+            <input
+              class="input-form"
+              matInput
+              type="text"
+              placeholder="Ingresa el código"
+              formControlName="codigo"
+              required
+            />
+            <mat-error *ngIf="codigoForm.get('codigo')?.invalid && codigoForm.get('codigo')?.touched">
+              Por favor, ingresa un código válido.
+            </mat-error>
+          </mat-form-field>
+  
+          <button mat-flat-button color="primary" class="form-cred" [disabled]="codigoForm.invalid">
+            Validar Código
+          </button>
+  
+          <div *ngIf="mensaje" class="mt-3">
+            <p>{{ mensaje }}</p>
+          </div>
+        </div>
+      </form>
+  
+      <div class="right-img">
+        <img src="assets/img.png" style="border-radius: 30px;" alt="Imagen ilustrativa">
+      </div>
+    </div>
+  </div>
+  
