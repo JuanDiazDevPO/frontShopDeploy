@@ -1,4 +1,4 @@
-<div class="container" > <!-- Aplicar aquí -->
+<div class="container">
   <mat-card-header>
     <div mat-card-avatar class="img"></div>
     <mat-card-title style="font-weight: 600; font-size: xx-large;">
@@ -6,6 +6,11 @@
       <img src="assets/form.png" alt="form image">
     </mat-card-title>
     <p>Compra con confianza</p>
+
+    <!-- Sección para el botón de Cerrar sesión -->
+    <div class="header-actions">
+      <button mat-button (click)="logout()">Cerrar sesión</button>
+    </div>
   </mat-card-header>
 
   <main class="main-content">
@@ -63,14 +68,9 @@
         <img src="assets/img.png" alt="Imagen de bienvenida" class="welcome-image">
       </div>
       <div class="button-container">
-        <button mat-raised-button class="finalizar-compra" (click)="finalizarCompra()">Finalizar Compra
-
-        </button>
-         
-       
+        <button mat-raised-button class="finalizar-compra" (click)="finalizarCompra()">Finalizar Compra</button>
       </div>
     </div>
-
   </main>
      
   <footer class="footer">

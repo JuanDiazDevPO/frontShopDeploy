@@ -1,0 +1,80 @@
+.invoice {
+    width: 100%;
+    max-width: 400px; /* Limitar el ancho máximo para que se vea como un ticket */
+    margin: 20px auto; /* Centrar el ticket en la página */
+    padding: 20px;
+    border: 2px solid #333; /* Borde oscuro para simular un ticket */
+    border-radius: 10px;
+    background-color: #f4f4f4; /* Fondo claro */
+    font-family: 'Courier New', Courier, monospace; /* Fuente monoespaciada para un estilo de ticket */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto de elevación */
+  }
+  
+  .invoice h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 1px solid #333; /* Línea debajo del título */
+    padding-bottom: 10px;
+  }
+  
+  .invoice p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .invoice strong {
+    font-weight: bold;
+    color: #222;
+  }
+  
+  .invoice .total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e74c3c; /* Color rojo para el total */
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+  }
+  
+  @media (max-width: 600px) {
+    .invoice {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .invoice h2 {
+      font-size: 1.2rem;
+    }
+  
+    .invoice p {
+      font-size: 0.9rem;
+    }
+  
+    .invoice .total {
+      font-size: 1rem;
+    }
+  }
+  
+
+  @media print {
+    /* Estilos solo para la impresión */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .invoice {
+      page-break-before: always;
+    }
+  
+    /* Ocultar el resto de la página en la vista previa de impresión */
+    .other-content {
+      display: none;
+    }
+  }
+  

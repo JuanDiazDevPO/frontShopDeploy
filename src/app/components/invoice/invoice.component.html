@@ -1,0 +1,17 @@
+<button mat-flat-button color="primary" (click)="goToMenu()">
+  Volver al Menú
+</button>
+
+<div class="invoice">
+  <h2>Factura de Compra</h2>
+  <p><strong>Correo del cliente:</strong> {{ compra.emailCliente }}</p>
+  <p><strong>Medio de pago:</strong> {{ compra.paymentType }}</p>
+  <p><strong>Número de tarjeta:</strong> {{ compra.paymentNumber }}</p>
+  <p><strong>¿Es un regalo?</strong> {{ compra.isGift === 'yes' ? 'Sí' : 'No' }}</p>
+  <p class="total"><strong>Total:</strong> ${{ compra.precioFinal.toFixed(2) }}</p>
+
+  <button mat-flat-button color="primary" (click)="printInvoice()">
+      Imprimir Factura
+  </button>
+</div>
+  

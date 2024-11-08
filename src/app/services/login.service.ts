@@ -15,12 +15,18 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
+  private user : UsuarioLoginRequest | undefined; 
+  
   login(usuario: UsuarioLoginRequest): Observable<string> {
-    // Usamos responseType: 'text' para recibir la respuesta como texto plano
+     this.user=usuario;  // Usamos responseType: 'text' para recibir la respuesta como texto plano
     return this.http.post<string>(this.loginUrl, usuario, { responseType: 'text' as 'json' });
   }
+
+
+
+public  getUserEmail(){
+  return this.user?.email;
 }
 
-
-
+}
 

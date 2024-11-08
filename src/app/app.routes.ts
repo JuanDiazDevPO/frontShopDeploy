@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { CambiarContrasenaComponent } from './components/cambiar-password/cambiar-password.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 import { LoginComponent } from './components/login/login.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ProductosComponent } from './components/product-list/product-list.component';
-import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { ValidarCodigoComponent } from './components/validar-codigo/validar-codigo.component';
-import { CambiarPassword } from './services/cambiar-contraseña.service';
-import { CambiarContrasenaComponent } from './components/cambiar-password/cambiar-password.component';
 
 export const routes: Routes = [
   {
@@ -40,7 +40,9 @@ export const routes: Routes = [
 {
   path: 'cambiar-password',
   component: CambiarContrasenaComponent
-}
+},
+{ path: 'invoice',
+   component: InvoiceComponent },
  
  
 ];
