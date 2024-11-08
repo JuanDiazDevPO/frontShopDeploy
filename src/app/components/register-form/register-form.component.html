@@ -24,7 +24,7 @@
                                 </td>
                                 <td>
                                     <mat-form-field class="example-full-width">
-                                        <mat-label>Nombre y apellidos</mat-label>
+                                        <mat-label>Nombre</mat-label>
                                         <input matInput formControlName="nombre" placeholder="Ingresa tu nombre" required />
                                     </mat-form-field>
                                 </td>
@@ -75,10 +75,8 @@
 
                         <mat-form-field class="form-cred">
                             <mat-label>Confirmar contraseña</mat-label>
-                            <input matInput formControlName="confirmarContraseña" type="password" placeholder="Confirma tu contraseña" required />
-                            <mat-error *ngIf="registerForm.hasError('mismatch', ['contraseña', 'confirmarContraseña'])">
-                                Las contraseñas no coinciden
-                            </mat-error>
+                     <input matInput formControlName="confirmarContraseña"type="password"placeholder="Confirma tu contraseña" required/>
+                       <mat-error *ngIf="registerForm.hasError('passwordMismatch')">Las contraseñas no coinciden</mat-error>
                         </mat-form-field>
                     </div>
                 </mat-card-content>

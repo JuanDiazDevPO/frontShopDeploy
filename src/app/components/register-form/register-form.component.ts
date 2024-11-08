@@ -60,7 +60,7 @@ export class RegisterFormComponent implements OnInit {
     // Verificar el contenido del objeto 'user' antes de enviarlo
     console.log('Datos enviados al backend:', user);
 
-    this.http.post('http://localhost:8090/usuario/registrar', user, { responseType: 'text' }).subscribe(
+    this.http.post('https://pivotal-base-441001-e5.ue.r.appspot.com/usuario/registrar', user, { responseType: 'text' }).subscribe(
       (response) => {
         // Verifica que la respuesta sea exitosa y contiene el mensaje esperado
         console.log('Respuesta del backend:', response);  // Para ver lo que devuelve el backend
